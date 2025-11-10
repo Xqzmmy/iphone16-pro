@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Інфографіка: Apple iPhone 16 Pro</title>
+
+    <!-- ==== ВСТАВЛЕНИЙ ROBOTS.TXT ==== -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache">
+    <!-- Якщо хочеш дозволити індексацію — заміни рядок вище на:
+    <meta name="robots" content="index, follow, all">
+    -->
+    <!-- Еквівалент повного robots.txt (для тих ботів, які читають мета-теги):
+         User-agent: *
+         Disallow: /admin/
+         Disallow: /private/
+         Allow: /
+         Sitemap: https://твій-сайт.ua/sitemap.xml
+    -->
+    <!-- ==== КІНЕЦЬ ROBOTS.TXT ==== -->
+
     <style>
         /* Відео-фон */
         .video-bg {
@@ -52,13 +67,11 @@
             }
         }
 
-        /* Базові стилі для анімованих елементів */
         .animate {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        /* Затримки для послідовної появи */
         .header { animation-delay: 0.2s; }
         .product-image { animation-delay: 0.4s; }
         .specs { animation-delay: 0.6s; }
@@ -68,13 +81,11 @@
         .additional-info { animation-delay: 1.4s; }
         .footer { animation-delay: 1.6s; }
 
-        /* Додаткові затримки для елементів всередині .specs */
         .specs .spec-item:nth-child(1) { animation-delay: 0.7s; }
         .specs .spec-item:nth-child(2) { animation-delay: 0.8s; }
         .specs .spec-item:nth-child(3) { animation-delay: 0.9s; }
         .specs .spec-item:nth-child(4) { animation-delay: 1.0s; }
 
-        /* Затримки для списку особливостей */
         .feature-list li:nth-child(1) { animation-delay: 1.3s; }
         .feature-list li:nth-child(2) { animation-delay: 1.4s; }
         .feature-list li:nth-child(3) { animation-delay: 1.5s; }
@@ -311,22 +322,22 @@
         <!-- Характеристики -->
         <div class="specs animate">
             <div class="spec-item">
-                <div class="spec-icon">📱</div>
+                <div class="spec-icon">Дисплей</div>
                 <div class="spec-title">Дисплей</div>
                 <div class="spec-value">6.3" Super Retina XDR<br>120 Гц ProMotion, найтонші рамки</div>
             </div>
             <div class="spec-item">
-                <div class="spec-icon">⚡</div>
+                <div class="spec-icon">Процесор</div>
                 <div class="spec-title">Процесор</div>
                 <div class="spec-value">Apple A19 Bionic<br>6-ядерний GPU, 35 TOPS Neural Engine</div>
             </div>
             <div class="spec-item">
-                <div class="spec-icon">📸</div>
+                <div class="spec-icon">Камера</div>
                 <div class="spec-title">Камера</div>
                 <div class="spec-value">48 МП основна + ультраширока<br>Нові Photographic Styles з AI</div>
             </div>
             <div class="spec-item">
-                <div class="spec-icon">🔋</div>
+                <div class="spec-icon">Батарея</div>
                 <div class="spec-title">Батарея</div>
                 <div class="spec-value">До 29 годин відео<br>Покращена термальна архітектура</div>
             </div>
@@ -340,9 +351,9 @@
 
         <!-- Відео реклама -->
         <div class="video-ad animate">
-            <p style="color: #d0e8ff; margin-bottom: 15px;">Е</p>
-            <iframe src="https://www.youtube.com/watch?v=vjllBwrimxI" frameborder="0" allowfullscreen></iframe>
-            <p style="color: #c0e0ff; font-size: 0.9em; margin-top: 10px;"></p>
+            <p style="color: #d0e8ff; margin-bottom: 15px;">Офіційний ролик Apple</p>
+            <iframe src="https://www.youtube.com/embed/vjllBwrimxI" frameborder="0" allowfullscreen></iframe>
+            <p style="color: #c0e0ff; font-size: 0.9em; margin-top: 10px;">Джерело: YouTube / Apple</p>
         </div>
 
         <!-- Ключові особливості -->
@@ -376,15 +387,15 @@
 
         <!-- Футер -->
         <div class="footer animate">
-            <p>Інфографіка створена на основі даних з <a href="https://www.apple.com/ru/iphone-16-pro/">apple.com</a> • Оновлено: 30 жовтня 2025</p>
+            <p>Інфографіка створена на основі даних з <a href="https://www.apple.com/ru/iphone-16-pro/">apple.com</a> • Оновлено: 10 листопада 2025</p>
         </div>
     </div>
 
-    <!-- Активація анімації після завантаження -->
+    <!-- Активація анімації -->
     <script>
         window.addEventListener('load', () => {
             document.querySelectorAll('.animate').forEach((el, index) => {
-                el.style.animationDelay = `${0.1 * index}s`; // Динамічна затримка для плавності
+                el.style.animationDelay = `${0.1 * index}s`;
                 el.style.opacity = '0';
                 setTimeout(() => {
                     el.style.opacity = '1';
