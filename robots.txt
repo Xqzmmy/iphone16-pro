@@ -1,0 +1,47 @@
+# robots.txt для https://xqzmmy.github.io/iphone16-pro/
+# Создано 10 ноября 2025
+
+User-agent: *
+Disallow: /admin/
+Disallow: /backup/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /search
+Disallow: /cart
+Disallow: /checkout
+Disallow: /login
+Disallow: /register
+Disallow: /profile
+Disallow: /*?*sort=
+Disallow: /*?*page=
+Disallow: /*.php$
+Disallow: /*.pdf$
+Allow: /.well-known/
+
+# Блокировка подозрительных ботов
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Разрешаем хороших ботов
+User-agent: Googlebot
+Disallow: /admin/
+Disallow: /private/
+Allow: /
+
+User-agent: YandexBot
+Disallow: /admin/
+Disallow: /private/
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://xqzmmy.github.io/iphone16-pro/
