@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інфографіка: Apple iPhone 16 Pro</title>
+    <style>
+        /* Відео-фон */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.75);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            min-height: 100vh;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Анімація появи */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Базові стилі для анімованих елементів */
+        .animate {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Затримки для послідовної появи */
+        .header { animation-delay: 0.2s; }
+        .product-image { animation-delay: 0.4s; }
+        .specs { animation-delay: 0.6s; }
+        .price { animation-delay: 0.8s; }
+        .video-ad { animation-delay: 1.0s; }
+        .features { animation-delay: 1.2s; }
+        .additional-info { animation-delay: 1.4s; }
+        .footer { animation-delay: 1.6s; }
+
+        /* Додаткові затримки для елементів всередині .specs */
+        .specs .spec-item:nth-child(1) { animation-delay: 0.7s; }
+        .specs .spec-item:nth-child(2) { animation-delay: 0.8s; }
+        .specs .spec-item:nth-child(3) { animation-delay: 0.9s; }
+        .specs .spec-item:nth-child(4) { animation-delay: 1.0s; }
+
+        /* Затримки для списку особливостей */
+        .feature-list li:nth-child(1) { animation-delay: 1.3s; }
+        .feature-list li:nth-child(2) { animation-delay: 1.4s; }
+        .feature-list li:nth-child(3) { animation-delay: 1.5s; }
+        .feature-list li:nth-child(4) { animation-delay: 1.6s; }
+        .feature-list li:nth-child(5) { animation-delay: 1.7s; }
+        .feature-list li:nth-child(6) { animation-delay: 1.8s; }
+        .feature-list li:nth-child(7) { animation-delay: 1.9s; }
+        .feature-list li:nth-child(8) { animation-delay: 2.0s; }
+
+        /* Заголовок */
+        .header {
+            background: transparent;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        /* Зображення */
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            padding: 20px;
+            background: transparent;
+        }
+
+        /* Характеристики */
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .spec-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .spec-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .spec-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #a0d8ff;
+        }
+
+        .spec-title {
+            font-weight: 600;
+            margin: 10px 0 5px;
+            color: #e0f7ff;
+        }
+
+        .spec-value {
+            font-size: 1.1em;
+            color: #d0e8ff;
+        }
+
+        /* Ціна */
+        .price {
+            text-align: center;
+            padding: 30px;
+            background: transparent;
+            color: white;
+        }
+
+        .price .amount {
+            font-size: 3em;
+            font-weight: 700;
+            margin: 0;
+            color: #fffd;
+        }
+
+        .price .note {
+            opacity: 0.85;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+
+        /* Відео реклама */
+        .video-ad {
+            padding: 30px;
+            background: transparent;
+            text-align: center;
+        }
+
+        .video-ad h2 {
+            color: #e0f7ff;
+            margin-bottom: 15px;
+        }
+
+        .video-ad iframe {
+            width: 100%;
+            max-width: 560px;
+            height: 315px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Особливості */
+        .features {
+            padding: 30px;
+            background: transparent;
+        }
+
+        .features h2 {
+            text-align: center;
+            color: #e0f7ff;
+            margin-bottom: 25px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-list li {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            color: #f0f8ff;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-right: 12px;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+        }
+
+        /* Додаткова інформація */
+        .additional-info {
+            padding: 30px;
+            background: transparent;
+        }
+
+        .additional-info h2 {
+            text-align: center;
+            color: #e0f7ff;
+            margin-bottom: 25px;
+        }
+
+        .additional-info p {
+            color: #d0e8ff;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .additional-info ul {
+            list-style: disc;
+            padding-left: 20px;
+            color: #d0e8ff;
+        }
+
+        .additional-info li {
+            margin-bottom: 10px;
+        }
+
+        /* Футер */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: transparent;
+            color: #c0e0ff;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #8ccfff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2em; }
+            .price .amount { font-size: 2.2em; }
+            .video-ad iframe { height: 200px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Відео-фон -->
+    <video class="video-bg" autoplay muted loop playsinline>
+        <source src="https://cdn.pixabay.com/video/2020/08/12/47031-449623933_tiny.mp4" type="video/mp4">
+        Ваш браузер не підтримує відео.
+    </video>
+
+    <div class="container">
+        <!-- Заголовок -->
+        <div class="header animate">
+            <h1>Apple iPhone 16 Pro</h1>
+            <p>Флагман 2025 року з чипом A19 Bionic та камерою 48 МП</p>
+        </div>
+
+        <!-- Зображення -->
+        <img src="https://my-apple.com.ua/image/catalog/products/iphone/iphone-16-pro-16-pro-max/black-titanium-1.png" alt="iPhone 16 Pro" class="product-image animate">
+
+        <!-- Характеристики -->
+        <div class="specs animate">
+            <div class="spec-item">
+                <div class="spec-icon">📱</div>
+                <div class="spec-title">Дисплей</div>
+                <div class="spec-value">6.3" Super Retina XDR<br>120 Гц ProMotion, найтонші рамки</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-icon">⚡</div>
+                <div class="spec-title">Процесор</div>
+                <div class="spec-value">Apple A19 Bionic<br>6-ядерний GPU, 35 TOPS Neural Engine</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-icon">📸</div>
+                <div class="spec-title">Камера</div>
+                <div class="spec-value">48 МП основна + ультраширока<br>Нові Photographic Styles з AI</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-icon">🔋</div>
+                <div class="spec-title">Батарея</div>
+                <div class="spec-value">До 29 годин відео<br>Покращена термальна архітектура</div>
+            </div>
+        </div>
+
+        <!-- Ціна -->
+        <div class="price animate">
+            <p class="amount">від 48 600 ₴</p>
+            <p class="note">За версію 256 ГБ в офіційному магазині Apple</p>
+        </div>
+
+        <!-- Відео реклама -->
+        <div class="video-ad animate">
+            <p style="color: #d0e8ff; margin-bottom: 15px;">Е</p>
+            <iframe src="https://www.youtube.com/watch?v=vjllBwrimxI" frameborder="0" allowfullscreen></iframe>
+            <p style="color: #c0e0ff; font-size: 0.9em; margin-top: 10px;"></p>
+        </div>
+
+        <!-- Ключові особливості -->
+        <div class="features animate">
+            <h2>Ключові переваги</h2>
+            <ul class="feature-list">
+                <li>Титановий корпус Aerospace-grade</li>
+                <li>Dynamic Island 2.0 з ІІ-помічником</li>
+                <li>Apple Intelligence (нейромережа на пристрої)</li>
+                <li>USB-C з підтримкою Thunderbolt 5</li>
+                <li>Супутниковий зв’язок в екстрених випадках</li>
+                <li>iOS 19 з кастомізацією головного екрану</li>
+                <li>Camera Control: нова кнопка для швидкого зйомки та Visual Intelligence</li>
+                <li>Покращена продуктивність на 20% для ігор</li>
+            </ul>
+        </div>
+
+        <!-- Додаткова інформація -->
+        <div class="additional-info animate">
+            <h2>Цікаві факти про iPhone 16 Pro</h2>
+            <p>iPhone 16 Pro — це вершина інновацій Apple у 2025 році. Оголошений у вересні 2024, він став доступним з 20 вересня, але повний набір Apple Intelligence з'явився лише в середині 2025. Цей пристрій оснащений чипом A19 Bionic з 16-ядерним Neural Engine, що забезпечує 35 трильйонів операцій на секунду для AI-функцій.</p>
+            <ul>
+                <li><strong>Visual Intelligence:</strong> Нова функція, доступна через Camera Control, дозволяє розпізнавати об'єкти, місця та навіть додавати події з флаєрів до календаря.</li>
+                <li><strong>Photographic Styles:</strong> AI-налаштування кольорів, тонів та підтону шкіри в реальному часі — персоналізація фото як ніколи просто.</li>
+                <li><strong>Термальна архітектура:</strong> Графітовий шар та алюмінієва підструктура підвищують стійкість на 30% під час ігор.</li>
+                <li><strong>Екологічність:</strong> 100% перероблений алюміній у корпусі, плюс підтримка Precision Finding для друзів через AirDrop.</li>
+                <li><strong>Майбутнє:</strong> Підтримка iOS 26 (випущена у вересні 2025) та інтеграція з ChatGPT та Google для розширених запитів.</li>
+            </ul>
+            <p>Цей iPhone не просто телефон — це інструмент для творчості та продуктивності!</p>
+        </div>
+
+        <!-- Футер -->
+        <div class="footer animate">
+            <p>Інфографіка створена на основі даних з <a href="https://www.apple.com/ru/iphone-16-pro/">apple.com</a> • Оновлено: 30 жовтня 2025</p>
+        </div>
+    </div>
+
+    <!-- Активація анімації після завантаження -->
+    <script>
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.animate').forEach((el, index) => {
+                el.style.animationDelay = `${0.1 * index}s`; // Динамічна затримка для плавності
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                }, 50);
+            });
+        });
+    </script>
+</body>
+</html>
